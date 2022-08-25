@@ -6,7 +6,7 @@
 #include <vector>
 #include <variant>
 #include "./enums/Colors.h"
-#include "../../champions/upgrades/Upgrades.h"
+#include "../../champions/upgrades/Upgrade.h"
 
 /**
  * Rendering class : handle displaying of the information to the console
@@ -42,7 +42,7 @@ namespace objects::game::rendering {
 
         // =============================================================================================================
         // UPGRADES
-        static std::variant<Boost,champions::items::Item> choose_upgrade();
+        static champions::upgrades::Upgrade choose_upgrade();
         static std::string display_boost_upgrade(Boost boost);
         static std::string display_item_upgrade(champions::items::Item item);
 

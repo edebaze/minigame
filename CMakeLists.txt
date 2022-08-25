@@ -27,4 +27,5 @@ add_executable(
         src/objects/game/rendering/Renderer.h
         src/objects/game/rendering/enums/Colors.h
         src/objects/game/rendering/enums/Colors.cpp
-        src/objects/champions/upgrades/Upgrades.h src/objects/champions/upgrades/Upgrades.cpp)
+        src/objects/champions/upgrades/Upgrade.cpp
+        src/objects/champions/upgrades/Upgrade.h)

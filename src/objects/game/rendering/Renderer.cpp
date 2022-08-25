@@ -97,16 +97,22 @@ namespace objects::game::rendering {
 
     // =================================================================================================================
     // UPGRADES
-    std::variant<Boost,champions::items::Item> Renderer::choose_upgrade() {
+    /**
+     * Make Player choose an upgrade with prompt :
+     *  This function should be in Player object which would grand access to Stuff. Therefore, i would be able to not
+     *  present items that the Player already possesses.
+     * @return
+     */
+    champions::upgrades::Upgrade Renderer::choose_upgrade() {
         Renderer::print("Choose an upgrade :");
         int ctr = 1;
         int n_spaces = 0;
         const int MAX_CONTENT_LENGTH = 35;
 
-        std::vector<std::variant<Boost,champions::items::Item>> all_upgrades = {};
+        std::vector<champions::upgrades::Upgrade> all_upgrades = champions::upgrades::get_upgrades();
 
         // display all boosts
-        for(Boost boost : champions::upgrades::Upgrades::boosts) {
+        for(champions::upgrades::Upgrade upgrade : all_upgrades) {
             // jump a line each 2 propositions (extra jump line on first choice intentional)
             if (ctr % 2 == 1) {
                 // get to next line
@@ -116,43 +122,39 @@ namespace objects::game::rendering {
             }
 
             // get content of the upgrade as string
-            std::string content = "[" + std::to_string(ctr) + "] " + Renderer::display_boost_upgrade(boost);
+            std::string content = "[" + std::to_string(ctr) + "] ";
+            if (upgrade.getBoost().has_value()) {
+                content +=  Renderer::display_boost_upgrade(upgrade.getBoost().value());
+            }
+            if (upgrade.getItem().has_value()) {
+                content +=  Renderer::display_item_upgrade(upgrade.getItem().value());
+            }
+
             // calculate length to determine the number of spaces to add
             /** Note: this is a "+=" assignment as we want to use this content to dampen the previous
              * content in case of previous_content_length > MAX_CONTENT_LENGTH */
             n_spaces += MAX_CONTENT_LENGTH - content.length();
             // display content
             std::cout << content << Renderer::repeat(" ", std::max(0, n_spaces));
-
-            all_upgrades.emplace_back(boost);
+            ctr++;
         }
 
-        // display all boosts
-        for(champions::items::enums::ItemList itemName : champions::upgrades::Upgrades::items) {
-            // jump a line each 2 propositions (extra jump line on first choice intentional)
-            if (ctr % 2 == 1) {
-                // get to next line
-                Renderer::jump_line();
-                // reset n_spaces to 0 (as we will not need to dampen previous content
-                n_spaces = 0;
-            }
-
-            champions::items::Item item = champions::items::enums::ItemListUtils::get(itemName);
-            // get content of the upgrade as string
-            std::string content = "[" + std::to_string(ctr) + "] " + Renderer::display_item_upgrade(item);
-            // calculate length to determine the number of spaces to add
-            n_spaces += MAX_CONTENT_LENGTH - content.length();
-            // display content
-            std::cout << content << Renderer::repeat(" ", std::max(0, n_spaces));
-
-            all_upgrades.emplace_back(item);
-        }
+        Renderer::jump_line();
 
         // get the Player's choice
         int choice;
         std::cin >> choice;
+        // choice - 1 : because choices starts at 1
+        choice -= 1;
 
-        // TODO : check of choice
+        // check choice
+        int choiceCtr = 0;
+        while(choice < 0 && choice > all_upgrades.size() && choiceCtr < 3) {
+            Renderer::print("Sorry, i did not understood your answer, please choose again");
+            std::cin >> choice;
+            choice -= 1;
+            choiceCtr += 1;
+        }
 
         return all_upgrades[choice];
     }
@@ -161,22 +163,28 @@ namespace objects::game::rendering {
         std::string myOut;
 
         if (boost.getHp() != 0) {
+            if (! myOut.empty()) myOut += " | ";
             myOut += std::to_string(boost.getHp()) + " hp";
         }
         if (boost.getShield() != 0) {
-            myOut += std::to_string(boost.getHp()) + " shield";
+            if (! myOut.empty()) myOut += " | ";
+            myOut += std::to_string(boost.getShield()) + " shield";
         }
         if (boost.getAd() != 0) {
-            myOut += std::to_string(boost.getHp()) + " attack damages";
+            if (! myOut.empty()) myOut += " | ";
+            myOut += std::to_string(boost.getAd()) + " attack damages";
         }
         if (boost.getResistance() != 0) {
-            myOut += std::to_string(boost.getHp()) + " resistances";
+            if (! myOut.empty()) myOut += " | ";
+            myOut += std::to_string(boost.getResistance()) + " resistances";
         }
-        if (boost.getPercDamages() != 0) {
-            myOut += std::to_string(boost.getHp()) + " % damages";
+        if (boost.getPercDamages() != 1) {
+            if (! myOut.empty()) myOut += " | ";
+            myOut += std::to_string(boost.getPercDamages()) + "% damages";
         }
-        if (boost.getPercResistance() != 0) {
-            myOut += std::to_string(boost.getHp()) + " % resistances";
+        if (boost.getPercResistance() != 1) {
+            if (! myOut.empty()) myOut += " | ";
+            myOut += std::to_string(boost.getPercResistance()) + "% resistances";
         }
 
         return myOut;

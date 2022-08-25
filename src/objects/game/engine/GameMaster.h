@@ -28,9 +28,9 @@ namespace objects::game::engine {
 
         // =============================================================================================================
         // LEVEL MANAGING
-        bool next_level();
+        void start_level();
         bool play_level();
-        static bool end_level();
+        bool next_level();
 
         // =============================================================================================================
         // ROUND MANAGING

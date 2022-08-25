@@ -117,15 +117,14 @@ namespace objects::champions {
         // =============================================================================================================
         // [GETTERS & SETTERS]
         [[nodiscard]] std::string getPlayerName() const;
-        void setPlayerName(std::string playerName) ;
+        Player& setPlayerName(std::string playerName) ;
         bool getIsAuto() const;
-        void setIsAuto(bool isAuto);
+        Player& setIsAuto(bool isAuto);
         spells::Spell& getSpell();
 
         // =============================================================================================================
         // UPGRADES
-        void apply_upgrade(Boost upgrade);
-        void apply_upgrade(items::Item item);
+        void apply_upgrade(upgrades::Upgrade upgrade);
     };
 
 }

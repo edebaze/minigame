@@ -27,7 +27,7 @@ namespace objects::champions::items::enums {
                 case ItemList::DEFAULT_AXE:
                     return Item("DEFAULT_AXE", Emplacements::RIGHT_HAND).setAd(8);
                 case ItemList::DEFAULT_SWORD:
-                    return Item("DEFAULT_SWORD", Emplacements::RIGHT_HAND).setAd(5);
+                    return Item("DEFAULT_SWORD", Emplacements::RIGHT_HAND).setAd(50);
                 case ItemList::DEFAULT_SHIELD:
                     return Item("DEFAULT_SHIELD", Emplacements::LEFT_HAND).setShield(50);
                 case ItemList::SHADOW_AXE:

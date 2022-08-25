@@ -48,16 +48,21 @@ namespace objects::champions {
             return;
         }
 
-        std::variant<Boost, items::Item> upgrade = game::rendering::Renderer::choose_upgrade();
-//        this->apply_upgrade(upgrade);
+        champions::upgrades::Upgrade upgrade = game::rendering::Renderer::choose_upgrade();
+        this->apply_upgrade(upgrade);
     }
 
     // =================================================================================================================
     // [GETTERS & SETTERS]
     std::string Player::getPlayerName() const { return this->_playerName; }
-    void Player::setPlayerName(std::string playerName) { this->_playerName = std::move(playerName); }
+    Player& Player::setPlayerName(std::string playerName) {
+        this->_playerName = std::move(playerName);
+    }
     bool Player::getIsAuto() const { return this->_isAuto; }
-    void Player::setIsAuto(bool isAuto) { this->_isAuto = isAuto; }
+    Player& Player::setIsAuto(bool isAuto) {
+        this->_isAuto = isAuto;
+        return *this;
+    }
     spells::Spell& Player::getSpell() { return this->spell; }
 
     // =================================================================================================================
@@ -274,17 +279,18 @@ namespace objects::champions {
 
     // =================================================================================================================
     // UPGRADES
-    void Player::apply_upgrade(Boost boost)
-    {
-        this->_baseHp += boost.getHp();
-        this->_baseAd += boost.getAd();
-        this->_baseResistance += boost.getResistance();
-        this->_baseShield += boost.getShield();
-    }
+    void Player::apply_upgrade(upgrades::Upgrade upgrade) {
+        if (upgrade.getBoost().has_value()) {
+            Boost boost = upgrade.getBoost().value();
+            this->_baseHp += boost.getHp();
+            this->_baseAd += boost.getAd();
+            this->_baseResistance += boost.getResistance();
+            this->_baseShield += boost.getShield();
+        }
 
-    void Player::apply_upgrade(items::Item item)
-    {
-        this->equip(std::move(item));
+        if (upgrade.getItem().has_value()) {
+            this->equip(std::move(upgrade.getItem().value()));
+        }
     }
 
     // =================================================================================================================

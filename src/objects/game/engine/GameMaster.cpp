@@ -10,7 +10,7 @@ namespace objects::game::engine {
     GameMaster::GameMaster(std::vector<champions::Player> players)
     {
         GameMaster::round = 0;
-        this->level = 0;
+        this->level = 1;
         this->players = std::move(players);
         this->currentPlayerIndex = -1;
     }
@@ -20,16 +20,21 @@ namespace objects::game::engine {
     void GameMaster::run()
     {
         bool isContinue = true;
-        bool isVictory = true;
+        bool isVictory;
 
         while(isContinue) {
+            // display level
+            this->start_level();
+
             // play the level
             isVictory = this->play_level();
 
+            // check if the player has failed or if this level was last level
             if (! isVictory || this->level == GameMaster::MAX_LEVEL) {
                 break;
             }
 
+            // handle end of a level (ask player if he wants to continue, level_up...)
             isContinue = this->next_level();
         }
 
@@ -57,26 +62,22 @@ namespace objects::game::engine {
 
     // =================================================================================================================
     // LEVEL MANAGEMENT
-    bool GameMaster::next_level()
+    /** contains all actions that happens at the very start of the level (just before level loop) */
+    void GameMaster::start_level()
     {
-        // ask player if he wants to continue
-        if (! rendering::Renderer::continue_message()) {
-            return false;
-        }
-
-        // increase game level
-        this->level++;
-
         // reset GameMaster rounds and Players (hp, buffs... etc)
         this->round = 0;
         for (champions::Player &player : this->players) {
-            player.level_up();
             player.reset();
         }
 
-        return true;
+        // DISPLAY : new level
+        game::rendering::Renderer::jump_line();
+        game::rendering::Renderer::separator("*");
+        game::rendering::Renderer::print("Level " + std::to_string(this->level));
     }
 
+    /** contains all actions that happens while the level is not finished */
     bool GameMaster::play_level()
     {
         while (this->round < GameMaster::MAX_ROUND_SECURITY) {
@@ -103,6 +104,29 @@ namespace objects::game::engine {
 
         rendering::Renderer::print("WARNING : infinite loop !");   // TODO : error message
         throw std::exception();
+    }
+
+    /** Contains all actions that occurred at the end of a level :
+     *      - ask Player if he wants to continue
+     *      - increase level
+     *      - level_up Player (make him choose an Upgrade)
+     * */
+    bool GameMaster::next_level()
+    {
+        // ask player if he wants to continue
+        if (! rendering::Renderer::continue_message()) {
+            return false;
+        }
+
+        // increase game level
+        this->level++;
+
+        // make Players level up (prompt choice for an Upgrade)
+        for (champions::Player &player : this->players) {
+            player.level_up();
+        }
+
+        return true;
     }
 
     // =================================================================================================================

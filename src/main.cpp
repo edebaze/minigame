@@ -15,7 +15,7 @@ int main()
     // ---------------------------------------
     // PLAYERS
     std::vector<Player> players = {
-        ClassTypeUtils::get(ClassType::KNIGHT),
+        ClassTypeUtils::get(ClassType::KNIGHT).setIsAuto(false),
         ClassTypeUtils::get(ClassType::ORC)
     };
 
