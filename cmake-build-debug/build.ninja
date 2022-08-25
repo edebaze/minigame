@@ -97,8 +97,8 @@ build CMakeFiles/untitled.dir/src/objects/game/rendering/enums/Colors.cpp.o: CXX
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir/src/objects/game/rendering/enums
 
-build CMakeFiles/untitled.dir/src/objects/champions/upgrades/Upgrades.cpp.o: CXX_COMPILER__untitled_Debug /home/edebazelaire/CLionProjects/TEST/src/objects/champions/upgrades/Upgrades.cpp || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles/untitled.dir/src/objects/champions/upgrades/Upgrades.cpp.o.d
+build CMakeFiles/untitled.dir/src/objects/champions/upgrades/Upgrade.cpp.o: CXX_COMPILER__untitled_Debug /home/edebazelaire/CLionProjects/TEST/src/objects/champions/upgrades/Upgrade.cpp || cmake_object_order_depends_target_untitled
+  DEP_FILE = CMakeFiles/untitled.dir/src/objects/champions/upgrades/Upgrade.cpp.o.d
   FLAGS = -g -std=gnu++20
   OBJECT_DIR = CMakeFiles/untitled.dir
   OBJECT_FILE_DIR = CMakeFiles/untitled.dir/src/objects/champions/upgrades
@@ -111,7 +111,7 @@ build CMakeFiles/untitled.dir/src/objects/champions/upgrades/Upgrades.cpp.o: CXX
 #############################################
 # Link the executable untitled
 
-build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/main.cpp.o CMakeFiles/untitled.dir/src/objects/champions/Player.cpp.o CMakeFiles/untitled.dir/src/objects/game/engine/GameMaster.cpp.o CMakeFiles/untitled.dir/src/objects/champions/spells/Spell.cpp.o CMakeFiles/untitled.dir/src/objects/champions/spells/Boost.cpp.o CMakeFiles/untitled.dir/src/objects/champions/items/Item.cpp.o CMakeFiles/untitled.dir/src/objects/game/rendering/Renderer.cpp.o CMakeFiles/untitled.dir/src/objects/game/rendering/enums/Colors.cpp.o CMakeFiles/untitled.dir/src/objects/champions/upgrades/Upgrades.cpp.o
+build untitled: CXX_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/src/main.cpp.o CMakeFiles/untitled.dir/src/objects/champions/Player.cpp.o CMakeFiles/untitled.dir/src/objects/game/engine/GameMaster.cpp.o CMakeFiles/untitled.dir/src/objects/champions/spells/Spell.cpp.o CMakeFiles/untitled.dir/src/objects/champions/spells/Boost.cpp.o CMakeFiles/untitled.dir/src/objects/champions/items/Item.cpp.o CMakeFiles/untitled.dir/src/objects/game/rendering/Renderer.cpp.o CMakeFiles/untitled.dir/src/objects/game/rendering/enums/Colors.cpp.o CMakeFiles/untitled.dir/src/objects/champions/upgrades/Upgrade.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/untitled.dir
   POST_BUILD = :
