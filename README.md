@@ -24,7 +24,7 @@ Chaque tours (appelés _rounds_) l'attaquant (appelé *current_player*) change :
 
 ## Notes 
 
-- Changements de statistiques volontaire du chevalier (hp : _~~20~~  ->  40_) : Chevalier trop faible par rapport à l'orc, le niveau 1 était trop compliqué à passer.
+- Changements de statistiques volontaire du chevalier (hp : _~~20~~  ->  50_) : Chevalier trop faible par rapport à l'orc, le niveau 1 était trop compliqué à passer.
 - Ajout d'une nouvelle stat appelée "resistance" qui réduit les dommages de manières fixe.
 - Seules ces deux classes (Orc, Chevalier) ont été implémentées mais le système est conçut pour facilement en implémenter de nouvelles. 
 - Le système n'est PAS prévu pour supporter du multi-player / multi targeting (à la Final Fantasy) ainsi les valeurs "current_player" et "current_target" sont automatiquement instanciées à chaque rounds.
