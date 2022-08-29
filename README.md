@@ -28,6 +28,7 @@ Chaque tours (appelés _rounds_) l'attaquant (appelé *current_player*) change :
 - Ajout d'une nouvelle stat appelée "resistance" qui réduit les dommages de manières fixe.
 - Seules ces deux classes (Orc, Chevalier) ont été implémentées mais le système est conçut pour facilement en implémenter de nouvelles. 
 - Le système n'est PAS prévu pour supporter du multi-player / multi targeting (à la Final Fantasy) ainsi les valeurs "current_player" et "current_target" sont automatiquement instanciées à chaque rounds.
+- Incorporation d'un système d'objets. Le "shield" du chevalier se trouve être maintenant un bonus de son item de départ et non un attribut de sa classe. De même que les dommages d'attaque sont dépendants de l'arme de départ de l'orc et du chevalier (bien que la classe puisse également pourvoir d'un bonus d'AD / shield / hp... etc)
 
 #### Nomenclature
 
