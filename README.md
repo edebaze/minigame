@@ -1,6 +1,6 @@
 # minigame - test
 
-Bonjour,
+Bonjour !\
 Voici un petit récapitulatif des règles de ce jeu.
 
 ## Fonctionnement du jeu
