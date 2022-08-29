@@ -23,7 +23,7 @@ namespace objects::champions::classes::enums {
             {
                 case ClassType::KNIGHT:
                     return Player(
-                        "KNIGHT", classType, 20, 0, 0, 0,
+                        "KNIGHT", classType, 50, 0, 0, 0,
                         spells::enums::SpellsListUtils::get(spells::enums::SpellsList::CHARGE),
                         {
                             items::enums::ItemList::DEFAULT_SHIELD,
