@@ -32,7 +32,7 @@ Chaque tours (appelés _rounds_) l'attaquant (appelé *current_player*) change :
 #### Nomenclature
 
 Je suis actuellement entrain d'essayer de trouver de nouvelles nomenclatures / règles d'écritures & architectures qui me sieds davantage dans mes projets personnels. Je profite donc de projets comme celui ci pour effectuer des tests.
-Je précise cela car certains choix peuvent sembler incongrus voir chaotiques, cela est dût au fait que je n'utilise pas mes règles habituelles.
+Je précise cela car certains choix peuvent sembler incongrues (voir chaotiques), cela est dût au fait que je n'utilise pas mes règles habituelles.
 Voici les règles que j'ai essayé au cours de ce projet :
 
 - variable : camelCase
